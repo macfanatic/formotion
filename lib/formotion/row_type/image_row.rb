@@ -79,7 +79,7 @@ module Formotion
 
         if source
           @camera = BW::Device.camera.send((source == :camera) ? :rear : :any)
-          @camera.picture(source_type: source, media_types: [:image]) do |result|
+          @camera.picture({source_type: source, media_types: [:image]}, App.delegate.window.rootViewController.presentedViewController) do |result|
             if result[:original_image]
               row.value = result[:original_image]
             end
